@@ -1,6 +1,5 @@
 package com.sina.microservice.moviecatalogservice.resources;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,7 +11,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.sina.microservice.moviecatalogservice.models.CatalogItem;
 import com.sina.microservice.moviecatalogservice.models.Movie;
-import com.sina.microservice.moviecatalogservice.models.MovieRating;
+import com.sina.microservice.moviecatalogservice.models.UserRating;
 
 @RestController
 @RequestMapping("/catalog")
@@ -21,17 +20,15 @@ public class MovieCatalogResource {
 	@Autowired
 	private RestTemplate restTemplate;
 	
+	
 	@RequestMapping("/{userId}")
 	public List<CatalogItem> getCatalog(@PathVariable("userId") String userId) {
 		
 		
-		
-		List<MovieRating> ratings = Arrays.asList(
-				new MovieRating("123", 10),
-				new MovieRating("445", 20));
-		
-		
-		return ratings.stream().map(rating -> {
+		UserRating ratings =  restTemplate.getForObject("http://localhost:8083/ratingsdata/users/" + userId,
+				UserRating.class);
+				
+		return ratings.getMovieRatings().stream().map(rating -> {
 
 			Movie movie = restTemplate.getForObject("http://localhost:8082/movies/" + rating.getMovieId(), Movie.class);
 			return new CatalogItem(movie.getName(), "Good movie", rating.getRating() ); 
