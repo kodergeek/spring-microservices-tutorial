@@ -8,10 +8,10 @@
 		<version>2.4.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>service-registration-and-discovery-client</artifactId>
+	<groupId>com.sina.microservice</groupId>
+	<artifactId>movie-catalog-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>service-registration-and-discovery-client</name>
+	<name>movie-catalog-service</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
