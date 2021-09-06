@@ -1,0 +1,6 @@
+.metadata
+.mvn
+.DS_Store
+/movie-movie-info-service/target
+/movie-movie-rating-data/target
+/movie-catalog-service/target
